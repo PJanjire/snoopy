@@ -23,7 +23,6 @@ public class HomeController {
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
 
-		// 🔥 Force logout whenever login page is accessed
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
@@ -62,19 +61,13 @@ public class HomeController {
 	public String error_500() {
 		return "error_500";
 	}
-
-	@GetMapping("logout.htm")
-	public String logout(HttpServletRequest request) {
-
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-
-		SecurityContextHolder.clearContext();
-
-		return "redirect:/login.htm";
+	
+	@GetMapping("resetpassword.htm")
+	public String resetpassword() {
+		return "reset-password";
 	}
+
+	
 
 	// Common method used to load pages.
 	private ModelAndView getPage(String pageName, Authentication authentication, HttpServletRequest request,

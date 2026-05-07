@@ -46,6 +46,20 @@ public class AuthController {
 	private RoleRepository roleRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	
+	@GetMapping("logout.htm")
+	public String logout(HttpServletRequest request) {
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+
+		SecurityContextHolder.clearContext();
+
+		return "redirect:/login.htm";
+	}
 
 	@PostMapping("/register.htm")
 	@ResponseBody

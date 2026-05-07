@@ -46,7 +46,7 @@ public class SecurityConfig {
 		return provider;
 	}
 
-	private static final String[] AUTH_WHITELIST = { "/login.htm", "/signup.htm", "/register.htm","/error_***.htm",
+	private static final String[] AUTH_WHITELIST = { "/login.htm", "/signup.htm", "/register.htm","/resetpassword.htm","/error_***.htm",
 			"/forgotpassword.htm", "/signin.htm", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**",
 			"/swagger-resources/**", "/webjars/**", "/bower_components*/**", "/dist*/**", "/chart.js*/**", "/img*/**",
 			"/js*/**", "/cypher*/**", "/encryption*/**" };
