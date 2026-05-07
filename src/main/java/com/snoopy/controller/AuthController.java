@@ -52,7 +52,7 @@ public class AuthController {
 	public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
 
 		Map<String, Object> response = new HashMap<>();
-
+		
 		if (userRepository.existsByUsername(request.getUsername())) {
 			response.put("status", "error");
 			response.put("message", "Username already exists");
@@ -94,7 +94,7 @@ public class AuthController {
 	@ResponseBody
 	public Map<String, Object> login(@RequestBody LoginRequest request, HttpServletRequest httpRequest) {
 		Map<String, Object> response = new HashMap<>();
-		
+				
 		try {
 			Authentication auth = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));

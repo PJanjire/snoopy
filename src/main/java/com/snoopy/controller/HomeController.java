@@ -17,12 +17,19 @@ import jakarta.servlet.http.HttpSession;
 public class HomeController {
 
 	@GetMapping("login.htm")
-	public String login(HttpServletResponse response) {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
 
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
 
+		// 🔥 Force logout whenever login page is accessed
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+
+		SecurityContextHolder.clearContext();
 		return "login";
 	}
 
@@ -56,7 +63,6 @@ public class HomeController {
 		return "error_500";
 	}
 
-
 	@GetMapping("logout.htm")
 	public String logout(HttpServletRequest request) {
 
@@ -70,47 +76,37 @@ public class HomeController {
 		return "redirect:/login.htm";
 	}
 
+	// Common method used to load pages.
+	private ModelAndView getPage(String pageName, Authentication authentication, HttpServletRequest request,
+			Model model) {
+
+		if (authentication == null || !authentication.isAuthenticated()) {
+			return new ModelAndView("login");
+		}
+
+		HttpSession session = request.getSession(false);
+
+		if (session != null && session.getAttribute("username") != null) {
+			model.addAttribute("username", session.getAttribute("username"));
+		} else {
+			model.addAttribute("username", "User");
+		}
+
+		return new ModelAndView(pageName);
+	}
+
+	// Profile page
 	@RequestMapping(value = "profile.htm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView profile(Authentication authentication, HttpServletRequest request, Model model) {
-		
-		if (authentication == null || !authentication.isAuthenticated()) {
-			return new ModelAndView("login");
-		}
-		
-		HttpSession session = request.getSession(false);
-		
-		if (session != null && session.getAttribute("username") != null) {
-			model.addAttribute("username", session.getAttribute("username"));
-		} else {
-			model.addAttribute("username", "User");
-		}
-		
-		ModelAndView mv = new ModelAndView("profile");
-	//	mv.addObject("username", authentication.getName());
-		
-		return mv;
+
+		return getPage("profile", authentication, request, model);
 	}
-	
-	
+
+	// Dashboard page
 	@RequestMapping(value = "dashboard.htm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView dashboard(Authentication authentication, HttpServletRequest request, Model model) {
-		
-		if (authentication == null || !authentication.isAuthenticated()) {
-			return new ModelAndView("login");
-		}
-		
-		HttpSession session = request.getSession(false);
-		
-		if (session != null && session.getAttribute("username") != null) {
-			model.addAttribute("username", session.getAttribute("username"));
-		} else {
-			model.addAttribute("username", "User");
-		}
-		
-		ModelAndView mv = new ModelAndView("dashboard");
-	//	mv.addObject("username", authentication.getName());
-		
-		return mv;
+
+		return getPage("dashboard", authentication, request, model);
 	}
 
 }
