@@ -1,0 +1,109 @@
+<!-- templates/fragments/sidebar.html -->
+<div class="fixed-sidebar-left" th:fragment="leftnavbar"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+
+        <li class="navigation-header"><span>Main</span> <i class="zmdi zmdi-more"></i></li>
+
+        <!-- DASHBOARD - Both USER and ADMIN -->
+        <li sec:authorize="hasAnyRole('USER', 'ADMIN')">
+            <a href="dashboard.htm">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-flag mr-20"></i>
+                    <span class="right-nav-text">Dashboard</span>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </li>
+
+        <!-- E-COMMERCE - ADMIN only -->
+        <li sec:authorize="hasRole('ADMIN')">
+            <a href="profile.htm">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-shopping-basket mr-20"></i>
+                    <span class="right-nav-text">E-Commerce</span>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </li>
+
+        <!-- APPS - Both USER and ADMIN -->
+        <li sec:authorize="hasAnyRole('USER', 'ADMIN')">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-apps mr-20"></i>
+                    <span class="right-nav-text">Apps</span>
+                </div>
+                <div class="pull-right">
+                    <i class="zmdi zmdi-caret-down"></i>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="app_dr" class="collapse collapse-level-1">
+                <li><a href="chats">Chats</a></li>
+                <li><a href="calendar">Calendar</a></li>
+                <li><a href="weather">Weather</a></li>
+                <li><a href="inbox">Inbox</a></li>
+            </ul>
+        </li>
+
+        <!-- WIDGETS - ADMIN only -->
+        <li sec:authorize="hasRole('ADMIN')">
+            <a href="widgets.htm">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-flag mr-20"></i>
+                    <span class="right-nav-text">Widgets</span>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </li>
+
+        <li><hr class="light-grey-hr mb-10" /></li>
+
+        <!-- Component section - ADMIN only -->
+        <li class="navigation-header" sec:authorize="hasRole('ADMIN')">
+            <span>Component</span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+
+        <!-- UI ELEMENTS - ADMIN only -->
+        <li sec:authorize="hasRole('USER')">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-smartphone-setup mr-20"></i>
+                    <span class="right-nav-text">UI Elements</span>
+                </div>
+                <div class="pull-right">
+                    <i class="zmdi zmdi-caret-down"></i>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="ui_dr" class="collapse collapse-level-1">
+                <li><a href="buttons.htm">Buttons</a></li>
+                <li><a href="modals.htm">Modals</a></li>
+                <li><a href="tabs.htm">Tabs</a></li>
+            </ul>
+        </li>
+
+        <!-- FORMS - ADMIN only -->
+        <li sec:authorize="hasRole('ADMIN')">
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#form_dr">
+                <div class="pull-left">
+                    <i class="zmdi zmdi-edit mr-20"></i>
+                    <span class="right-nav-text">Forms</span>
+                </div>
+                <div class="pull-right">
+                    <i class="zmdi zmdi-caret-down"></i>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="form_dr" class="collapse collapse-level-1">
+                <li><a href="form-element">Basic Forms</a></li>
+                <li><a href="form-validation">Validation</a></li>
+                <li><a href="form-wizard">Wizard</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
