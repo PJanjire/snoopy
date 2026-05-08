@@ -1,6 +1,5 @@
 <!-- templates/fragments/sidebar.html -->
-<div class="fixed-sidebar-left" th:fragment="leftnavbar"
-     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="fixed-sidebar-left" th:fragment="leftnavbar" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <ul class="nav navbar-nav side-nav nicescroll-bar">
 
@@ -59,7 +58,9 @@
             </a>
         </li>
 
-        <li><hr class="light-grey-hr mb-10" /></li>
+        <li>
+            <hr class="light-grey-hr mb-10" />
+        </li>
 
         <!-- Component section - ADMIN only -->
         <li class="navigation-header" sec:authorize="hasRole('ADMIN')">

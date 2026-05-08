@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Snoopy</title>
-<meta name="author" content="Squadlogic" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Snoopy</title>
+	<meta name="author" content="Squadlogic" />
 
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="img/favicon.ico">
-<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
-<!-- vector map CSS -->
-<link
-	href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+	<!-- vector map CSS -->
+	<link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-<link href="bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+	<link href="bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
 
 
-<!-- Custom CSS -->
-<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+	<!-- Custom CSS -->
+	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<!--Preloader-->
 	<div class="preloader-it">
@@ -33,14 +32,13 @@
 	<div class="wrapper  pa-0">
 		<header class="sp-header">
 			<div class="sp-logo-wrap pull-left">
-				<a href="dashboard.htm"> <img class="brand-img mr-10"
-					src="../img/logo.png" alt="brand" /> <span class="brand-text">Snoopy</span>
+				<a href="dashboard.htm"> <img class="brand-img mr-10" src="../img/logo.png" alt="brand" /> <span
+						class="brand-text">Snoopy</span>
 				</a>
 			</div>
 			<div class="form-group mb-0 pull-right">
 				<span class="inline-block pr-10">Already have an account?</span> <a
-					class="inline-block btn btn-warning btn-rounded btn-outline"
-					href="login.html">Sign In</a>
+					class="inline-block btn btn-warning btn-rounded btn-outline" href="login.html">Sign In</a>
 			</div>
 			<div class="clearfix"></div>
 		</header>
@@ -63,8 +61,8 @@
 										<form id="signUpForm" action="javascript:void(0);">
 											<div class="form-group">
 												<label class="control-label mb-10" for="username">Username</label>
-												<input type="text" class="form-control validation-pending"
-													required="" id="username" placeholder="Enter Username"
+												<input type="text" class="form-control validation-pending" required=""
+													id="username" placeholder="Enter Username"
 													onkeypress="return clsAlphaNoSplOnly(event);">
 												<span class="validation-error-text">Enter valid
 													UserName</span>
@@ -72,24 +70,24 @@
 											<div class="form-group">
 												<label class="control-label mb-10" for="email">Email
 													address</label> <input type="email"
-													class="form-control validation-pending" required=""
-													id="email" placeholder="Enter email"> <span
-													class="validation-error-text">Enter valid Email</span>
+													class="form-control validation-pending" required="" id="email"
+													placeholder="Enter email"> <span class="validation-error-text">Enter
+													valid Email</span>
 											</div>
 											<div class="form-group">
 												<label class="control-label mb-10" for="mobnumber">Mobile
 													Number</label> <input type="text"
-													class="form-control validation-pending" required=""
-													id="mobnumber" placeholder="Enter mobile number"
+													class="form-control validation-pending" required="" id="mobnumber"
+													placeholder="Enter mobile number"
 													onkeypress="return onlyNumeric(event);"> <span
 													class="validation-error-text">Enter valid Mobile
 													Number</span>
 											</div>
 											<div class="form-group">
-												<label class="pull-left control-label mb-10" for="InputPass">Password</label>
-												<input type="password"
-													class="form-control validation-pending" required=""
-													id="InputPass" placeholder="Enter password"> <i
+												<label class="pull-left control-label mb-10"
+													for="InputPass">Password</label>
+												<input type="password" class="form-control validation-pending"
+													required="" id="InputPass" placeholder="Enter password"> <i
 													class="fa fa-fw fa-eye-slash pr-5 pull-right pass_eye"></i>
 												<span class="validation-error-text">Enter valid
 													Password</span>
@@ -97,9 +95,8 @@
 											<div class="form-group">
 												<label class="pull-left control-label mb-10"
 													for="InputConfirmPass">Confirm Password</label> <input
-													type="password" class="form-control validation-pending"
-													required="" id="InputConfirmPass"
-													placeholder="Enter confirm password"> <i
+													type="password" class="form-control validation-pending" required=""
+													id="InputConfirmPass" placeholder="Enter confirm password"> <i
 													class="fa fa-fw fa-eye-slash pr-5 pull-right con_pass_eye"></i>
 
 												<span class="validation-error-text">Enter valid
@@ -113,8 +110,8 @@
 													<div class="clearfix"></div>
 												</div> -->
 											<div class="form-group text-center">
-												<button type="submit" id="signUnbtn"
-													class="btn btn-warning btn-rounded" disabled onclick="SignUp()">sign
+												<button type="submit" id="signUnbtn" class="btn btn-warning btn-rounded"
+													disabled onclick="SignUp()">sign
 													Up</button>
 											</div>
 										</form>
@@ -136,8 +133,9 @@
 	<!-- JavaScript -->
 
 	<!-- jQuery -->
-<div th:replace="~{scripts :: scripts}"></div>
+	<div th:replace="~{scripts :: scripts}"></div>
 	<script src="js/signup.js"></script>
 
 </body>
+
 </html>

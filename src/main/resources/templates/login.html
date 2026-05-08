@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>Snoopy</title>
-<meta name="author" content="Squadlogic" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Snoopy</title>
+	<meta name="author" content="Squadlogic" />
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../img/favicon.ico">
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 
-<!-- vector map CSS -->
-<link
-	href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+	<!-- vector map CSS -->
+	<link href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-<link
-	href="bower_components/jquery-toast-plugin/dist/jquery.toast.min.css"
-	rel="stylesheet" type="text/css">
+	<link href="bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
 
-<!-- Custom CSS -->
-<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+	<!-- Custom CSS -->
+	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<!--Preloader-->
 	<div class="preloader-it">
@@ -37,14 +34,13 @@
 	<div class="wrapper  pa-0">
 		<header class="sp-header">
 			<div class="sp-logo-wrap pull-left">
-				<a href="dashboard.htm"> <img class="brand-img mr-10"
-					src="../img/logo.png" alt="brand" /> <span class="brand-text">Snoopy</span>
+				<a href="dashboard.htm"> <img class="brand-img mr-10" src="../img/logo.png" alt="brand" /> <span
+						class="brand-text">Snoopy</span>
 				</a>
 			</div>
 			<div class="form-group mb-0 pull-right">
 				<span class="inline-block pr-10">Don't have an account?</span> <a
-					class="inline-block btn btn-warning  btn-rounded btn-outline"
-					href="signup.htm">Sign Up</a>
+					class="inline-block btn btn-warning  btn-rounded btn-outline" href="signup.htm">Sign Up</a>
 			</div>
 			<div class="clearfix"></div>
 		</header>
@@ -66,10 +62,10 @@
 									<div class="form-wrap">
 										<form id="SignInForm" action="javascript:void(0);">
 											<div class="form-group">
-												<label class="control-label mb-10" for="exampleInputEmail">Username</label>
-												<input type="text" class="form-control validation-pending"
-													required="" id="exampleInputEmail"
-													placeholder="Enter Username"
+												<label class="control-label mb-10"
+													for="exampleInputEmail">Username</label>
+												<input type="text" class="form-control validation-pending" required=""
+													id="exampleInputEmail" placeholder="Enter Username"
 													onkeypress="return clsAlphaNoSplOnly(event);"> <span
 													class="validation-error-text">Enter valid Username</span>
 											</div>
@@ -79,11 +75,9 @@
 													class="capitalize-font txt-orange block mb-10 pull-right font-12"
 													href="forgotpassword.htm">forgot password ?</a>
 												<div class="clearfix"></div>
-												<input type="password"
-													class="form-control validation-pending" required=""
-													id="exampleInputpwd" placeholder="Enter Password">
-												<i
-													class="fa fa-fw fa-eye-slash fa-lg pr-5 pull-right pass_eye "></i>
+												<input type="password" class="form-control validation-pending"
+													required="" id="exampleInputpwd" placeholder="Enter Password">
+												<i class="fa fa-fw fa-eye-slash fa-lg pr-5 pull-right pass_eye "></i>
 												<span class="validation-error-text">Enter valid
 													Password</span>
 											</div>
@@ -96,8 +90,8 @@
 												<div class="clearfix"></div>
 											</div> -->
 											<div class="form-group text-center">
-												<button type="submit" id="signInbtn"
-													class="btn btn-warning btn-rounded" onclick="SignIn()">Sign
+												<button type="submit" id="signInbtn" class="btn btn-warning btn-rounded"
+													onclick="SignIn()">Sign
 													In</button>
 
 											</div>
@@ -124,4 +118,5 @@
 	<script src="js/login.js"></script>
 
 </body>
+
 </html>
