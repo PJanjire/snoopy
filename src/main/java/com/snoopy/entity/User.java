@@ -1,5 +1,6 @@
 package com.snoopy.entity;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +44,12 @@ public class User extends Auditable {
 	
 	@Column(name = "password_status")
 	private int passwordstatus;
+	
+	@Column(name = "reset_token")
+	private String resetToken;
+
+	@Column(name = "reset_token_expiry")
+	private LocalDateTime resetTokenExpiry;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

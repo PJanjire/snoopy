@@ -23,10 +23,9 @@ public class SecurityConfig {
 
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
-	
+
 	@Autowired
 	private JwtFilter jwtFilter;
-
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -46,10 +45,10 @@ public class SecurityConfig {
 		return provider;
 	}
 
-	private static final String[] AUTH_WHITELIST = { "/login.htm", "/signup.htm", "/register.htm","/resetpassword.htm","/error_***.htm",
-			"/forgotpassword.htm", "/signin.htm", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**",
-			"/swagger-resources/**", "/webjars/**", "/bower_components*/**", "/dist*/**", "/chart.js*/**", "/img*/**",
-			"/js*/**", "/cypher*/**", "/encryption*/**" };
+	private static final String[] AUTH_WHITELIST = { "/login.htm",  "/signup.htm", "/register.htm", "/resetpassword.htm", "/updatepassword.htm",
+			"/error_***.htm", "/forgotpassword.htm", "/resetPassMail.htm", "/signin.htm", "/swagger-ui/**",
+			"/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**", "/bower_components*/**",
+			"/dist*/**", "/chart.js*/**", "/img*/**", "/js*/**", "/cypher*/**", "/encryption*/**" };
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -69,9 +68,8 @@ public class SecurityConfig {
 						.invalidateHttpSession(true).clearAuthentication(true).deleteCookies("JSESSIONID").permitAll())
 
 				.exceptionHandling(ex -> ex.authenticationEntryPoint((req, res, e) -> res.sendRedirect("/login.htm")))
-		
-		 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
+				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}

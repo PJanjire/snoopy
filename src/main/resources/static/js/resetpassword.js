@@ -1,20 +1,20 @@
 $(document).ready(function() {
 
     // ================= LIVE VALIDATION =================
-    $('#username, #email, #mobnumber, #InputPass, #InputConfirmPass').on('keyup change', function() {
+    $('#InputPass, #InputConfirmPass').on('keyup change', function() {
         checkValidation($(this));
 
-        if ($('#signUpForm').find('.validation-pending').length == 0) {
-            $("#signUnbtn").removeAttr("disabled");
+        if ($('#resetPassForm').find('.validation-pending').length == 0) {
+            $("#updatePass").removeAttr("disabled");
         } else {
-            $("#signUnbtn").attr("disabled", "disabled");
+            $("#updatePass").attr("disabled", "disabled");
         }
     });
 
     // ================= ENTER KEY =================
     $(document).on('keypress', function(e) {
         if (e.which == 13) {
-            $("#signUnbtn").click();
+            $("#updatePass").click();
         }
     });
 
@@ -22,116 +22,109 @@ $(document).ready(function() {
 
 $('.pass_eye').click(function() {
 
-		if ($(this).hasClass('fa-eye-slash')) {
-			$(this).removeClass('fa-eye-slash');
-			$(this).addClass('fa-eye');
-			$('#InputPass').attr('type', 'text');
-		} else {
-			$(this).removeClass('fa-eye');
-			$(this).addClass('fa-eye-slash');
-			$('#InputPass').attr('type', 'password');
-		}
-	});
-
-
-	$('.con_pass_eye').click(function() {
-
-		if ($(this).hasClass('fa-eye-slash')) {
-			$(this).removeClass('fa-eye-slash');
-			$(this).addClass('fa-eye');
-			$('#InputConfirmPass').attr('type', 'text');
-		} else {
-			$(this).removeClass('fa-eye');
-			$(this).addClass('fa-eye-slash');
-			$('#InputConfirmPass').attr('type', 'password');
-		}
-	});
-
-$("#mobnumber").on("input", function() {
-    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+    if ($(this).hasClass('fa-eye-slash')) {
+        $(this).removeClass('fa-eye-slash');
+        $(this).addClass('fa-eye');
+        $('#InputPass').attr('type', 'text');
+    } else {
+        $(this).removeClass('fa-eye');
+        $(this).addClass('fa-eye-slash');
+        $('#InputPass').attr('type', 'password');
+    }
 });
 
 
-function SignUp() {
+$('.con_pass_eye').click(function() {
 
-    checkValidation($("#username"));
-    checkValidation($("#email"));
-    checkValidation($("#mobnumber"));
+    if ($(this).hasClass('fa-eye-slash')) {
+        $(this).removeClass('fa-eye-slash');
+        $(this).addClass('fa-eye');
+        $('#InputConfirmPass').attr('type', 'text');
+    } else {
+        $(this).removeClass('fa-eye');
+        $(this).addClass('fa-eye-slash');
+        $('#InputConfirmPass').attr('type', 'password');
+    }
+});
+
+
+
+function updatePassword() {
+
     checkValidation($("#InputPass"));
     checkValidation($("#InputConfirmPass"));
 
-    if ($('#signUpForm').find('.validation-pending').length != 0) {
+    if ($('#resetPassForm').find('.validation-pending').length != 0) {
         return;
     }
 
-    var data = {
-        username: $("#username").val(),
-        email: $("#email").val(),
-        mobilenumber: $("#mobnumber").val(),
-        password: $("#InputPass").val()
-    };
+    if ($("#InputPass").val() != $("#InputConfirmPass").val()) {
 
-	$.ajax({
-	    url: "register.htm",
-	    type: "POST",
-	    contentType: "application/json",
-	    data: JSON.stringify(data),
+        $.toast({
+            text: "Password and Confirm Password must match",
+            position: 'top-right',
+            icon: 'error'
+        });
 
-	    beforeSend: function () {
-	        $("#loader").show();
-	    },
+        return;
+    }
 
-	    success: function (data) {
+    $.ajax({
 
-	        if (data.status === "success") {
+        url: "updatepassword.htm",
+        type: "POST",
 
-	            $.toast({
-	                text: data.message || "Success",
-	                position: 'top-right',
-	                icon: 'success',
-					hideAfter: 3000
-	            });
+        data: {
+            password: $("#InputPass").val(),
+            token: $("#token").val()
+        },
 
-	            setTimeout(function () {
-	                window.location.href = "login.htm";
-	            }, 500);
 
-	        } else {
+        beforeSend: function() {
+            $("#loader").show();
+        },
 
-	            // ❌ SERVER VALIDATION ERROR (like email exists)
-	            $.toast({
-	                text: data.message || "Validation error",
-	                position: 'top-right',
-	                icon: 'error',
-					hideAfter: 3000
-	            });
-	        }
-	    },
+        success: function(data) {
 
-	    error: function (xhr, status, error) {
+            if (data.status) {
 
-	        // ❌ ACTUAL SERVER ERROR (500, 404, exception)
-	        let msg = "Something went wrong";
+                $.toast({
+                    text: data.message,
+                    position: 'top-right',
+                    icon: 'success',
+                    hideAfter: 3000
+                });
 
-	        if (xhr.responseJSON && xhr.responseJSON.message) {
-	            msg = xhr.responseJSON.message;
-	        }
+                setTimeout(function() {
+                    window.location.href = "login.htm";
+                }, 2000);
 
-	        $.toast({
-	            text: msg,
-	            position: 'top-right',
-	            icon: 'error',
+            } else {
+
+                $.toast({
+                    text: data.message,
+                    position: 'top-right',
+                    icon: 'error',
+                    hideAfter: 3000
+                });
+            }
+        },
+
+        error: function() {
+
+            $.toast({
+                text: "Something went wrong",
+                position: 'top-right',
+                icon: 'error', 
 				hideAfter: 3000
 
-	        });
+            });
+        },
 
-	        console.log("AJAX Error:", xhr.responseText);
-	    },
-
-	    complete: function () {
-	        $("#loader").hide();
-	    }
-	});
+        complete: function() {
+            $("#loader").hide();
+        }
+    });
 }
 
 // ================= PASSWORD POLICY (YOUR ORIGINAL - UNCHANGED) =================
@@ -183,30 +176,6 @@ function checkValidation(element) {
             } else {
                 validationFailure(element);
             }
-            break;
-
-        case 'email':
-            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (regex.test($.trim(element.val()))) {
-                validationSuccess(element);
-            } else {
-                validationFailure(element);
-            }
-            break;
-
-        case 'mobnumber':
-
-            var value = $.trim(element.val());
-
-            // only 10 digits and starts with 6-9
-            var mobRegex = /^[6-9][0-9]{9}$/;
-
-            if (mobRegex.test(value)) {
-                validationSuccess(element);
-            } else {
-                validationFailure(element);
-            }
-
             break;
 
         case 'InputPass':
