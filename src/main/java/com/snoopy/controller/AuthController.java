@@ -208,8 +208,6 @@ public class AuthController {
 	        user.setResetToken(null);
 	        user.setResetTokenExpiry(null);
 
-	        
-
 	        userRepository.save(user);
 
 	        response.put("status", true);
