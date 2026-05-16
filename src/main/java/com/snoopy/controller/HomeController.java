@@ -91,17 +91,14 @@ public class HomeController {
 		
 		 User user = userRepository.findByResetToken(token);
 
-		    // Invalid token
 		    if (user == null) {
 		        return "error_404";
 		    }
 
-		    // Token expired
 		    if (user.getResetTokenExpiry().isBefore(LocalDateTime.now())) {
 		        return "error_401";
 		    }
 
-		    // Pass token to HTML page
 		    model.addAttribute("token", token);
 		return "reset-password";
 	}
